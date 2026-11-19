@@ -1,0 +1,110 @@
+{
+  "recovered": [
+    {
+      "path": "requirements.txt",
+      "sha256": "a83a2a4ed7ab2e022b9b8a83cfa2b8cf52cc243006c597e8b96f90a8365590ac",
+      "source_attachment": "0f56b26b-628f-4657-9344-8b058b847dc9.txt"
+    },
+    {
+      "path": "SPRINT_CHANGELOG.md",
+      "sha256": "a20be95e82c53688450ae8b53f9645fd8e44a0974aad402e70ffb547bdd16ece",
+      "source_attachment": "20102737-7bf9-4331-b121-e2358c98f6c6.md"
+    },
+    {
+      "path": "chunk_meta.json",
+      "sha256": "e93e8ce3374efc2224e23c8989d788d04e87cff1fee02de362f72ec76eecaac9",
+      "source_attachment": "212ac7ea-6ad6-441c-9916-50dae7d0fb50.json"
+    },
+    {
+      "path": "README.md",
+      "sha256": "7fbc1cb588a97d2cfe554a3edf9ca3f0fe35f2c93ada5421551b865a7656aa2c",
+      "source_attachment": "2fd686ee-a454-4a87-a738-d0816b3c42c6.md"
+    },
+    {
+      "path": "evaluate_retrieval.py",
+      "sha256": "3a282e16c571fae529cf2b8ae9c53a56090b3ab180ab04ca4008f9ec04cd0ba7",
+      "source_attachment": "4cdda305-31bd-4c8e-9a44-2c7d4ce5b6dd.py"
+    },
+    {
+      "path": "lsa_index_manifest.json",
+      "sha256": "bfc7c9064071c9b27f86e5ebf38ae3fa36e0db3044a4e5030c718a46e28e9c4c",
+      "source_attachment": "4f68ee8c-7eaf-4a69-8993-e2cd47e14686.json"
+    },
+    {
+      "path": "lsa_vocab.json",
+      "sha256": "67acb145d92f279896981eddb9b42331212ba6fb9a2d0a0827d6d83c4a4f462f",
+      "source_attachment": "50f1e166-a4c1-4195-b9b3-3431a33bb5a8.json"
+    },
+    {
+      "path": "Run_LYSIS.bat",
+      "sha256": "fa8d04cc60cf4e05e60159e0d680011e3f3d6f167701f3cf095f6c54969e5127",
+      "source_attachment": "5ef552bc-9062-4d39-a9bb-1d7cdb3d3812.exe"
+    },
+    {
+      "path": "MANUAL_TEST_CHECKLIST.md",
+      "sha256": "a1246386789f9f04d4d4fbb86f66a22cc9fe87054fd90ac8acfa3894f1d144a9",
+      "source_attachment": "63b97882-8130-4f02-84a9-d99257cc65e9.md"
+    },
+    {
+      "path": "VALIDATION_REPORT.md",
+      "sha256": "2ba52a81ee4ca25070b748182724c2c99a790296aa21022e17749bf6df39452a",
+      "source_attachment": "6dc1d280-24da-40a1-9566-3ac7d252644b.md"
+    },
+    {
+      "path": "TESTS_AND_LIMITATIONS.txt",
+      "sha256": "919734885dfe6d64b718a047861c120ca5960964c3052ca4cfc2ee39a49a42e2",
+      "source_attachment": "792f609e-3184-492f-8647-220963ca6d6c.txt"
+    },
+    {
+      "path": "rag_corpus.jsonl",
+      "sha256": "245d9bf1753b4862336dfae04204990e584398e0e0f1d2d733028072be478718",
+      "source_attachment": "887a70ee-ecd8-4167-ae12-68dc128cb8e9.jsonl"
+    },
+    {
+      "path": "RETRIEVAL_EVALUATION.md",
+      "sha256": "c785ded8deacbd49051e7ac476faff39cde5e3bb71a9b755f0c6208572819c16",
+      "source_attachment": "890cd79f-af3f-4dfd-90f4-e08b524aa061.md"
+    },
+    {
+      "path": "build_embeddings.py",
+      "sha256": "282ee21ae3d7abcf720a3d906fda71195414fa523c5749aed23c1a9aa4b9150b",
+      "source_attachment": "aef985c8-e76f-4870-8983-b628b959e8a0.py"
+    },
+    {
+      "path": "lsa_vectors.npy",
+      "sha256": "a18cae5708c6726f6d1c65802d07f510f586ec451c97a1698eb2779ca897a627",
+      "source_attachment": "b271e98a-efdb-4ac6-9c58-6e9ba8e7afdd.npy"
+    },
+    {
+      "path": "DEMO_SCRIPT.md",
+      "sha256": "6cf313050366909bf808ffdd14730c6dc793fea90c9f216fe41c9c82af1b09a0",
+      "source_attachment": "c573053b-0492-4934-897f-837962065d48.md"
+    },
+    {
+      "path": "DEMO_QUERIES.txt",
+      "sha256": "7a0c40ba0091eda68382cadcf683717376e0fa4d6d421b7a71dd7a2bcfd51d98",
+      "source_attachment": "d9840ca2-3307-410a-9bbf-f4d793d9aed4.txt"
+    },
+    {
+      "path": "RESEARCH_SOURCES.md",
+      "sha256": "f2e762a0e2acbb2f68c26f087956a1d45c6e0ee586848d1b54aa97f5b5b64d97",
+      "source_attachment": "ddab0568-b700-4485-857e-5b34604ad315.md"
+    },
+    {
+      "path": "retrieval_evaluation.json",
+      "sha256": "89cd406b2c51202284147bdd9fd13e8dfee3a0d5c7b9f7a7fbc1b0e31e17cd6d",
+      "source_attachment": "e315be16-1fc6-46c9-bc77-597476066457.json"
+    },
+    {
+      "path": "app.py",
+      "sha256": "29d02b509dff7775b6665e7c578198b27d968ecd80e54bf131b166a9d994a948",
+      "source_attachment": "e362ad85-c4ae-40aa-b3d6-b3e440ec535f.py"
+    }
+  ],
+  "unavailable_original_files": [
+    "static/index.html",
+    "test_results.txt",
+    "tests/test_app.py",
+    "tests/test_retrieval.py"
+  ]
+}
