@@ -1,1 +1,7 @@
-LYSIS 4.0: 63 automated tests pass in the build environment. See VALIDATION_REPORT.md. New six-frame translation and IUPAC motif scan features are descriptive sequence utilities only. This software is not a clinical tool and has not undergone laboratory or clinical validation. The 19-record corpus is an educational starter set, not the full project catalogue.
+LYSIS Research Desk 4.1 restoration
+
+21 regression tests pass on macOS with Python 3.12. Desktop and mobile browser workflows were verified. Windows execution remains unverified. See VALIDATION_REPORT.md for evidence.
+
+The recovered starter corpus contains 19 records. Sequence tools are descriptive and do not provide validated annotation or clinical recommendations. Author metadata is incomplete for some supplied records. Verify citations against original publications.
+
+Historical test counts in docs/original describe a previous build whose tests were unavailable. The original attachments are retained in the first Git commit.

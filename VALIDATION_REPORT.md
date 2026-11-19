@@ -1,23 +1,35 @@
-# LYSIS Research Desk 4.0 — Validation Report
+# LYSIS restoration verification
 
-**Build:** 4.0-sprint · local educational prototype
+Verification date: 19 November 2026. Host: macOS, Python 3.12, locked NumPy environment.
 
-## Automated results
+## Source recovery
 
-Command: `py -m unittest discover -s tests -v`
+20 of 24 files matched the original manifest. The unavailable original files were `static/index.html`, `tests/test_app.py`, `tests/test_retrieval.py` and `test_results.txt`. The interface and regression suite were rebuilt. Original documentation is archived under `docs/original/`; the initial Git commit retains exact recovered source.
 
-**Result in build environment: 62 tests passed, 0 failed.** This includes the previous 54 test cases and 8 new cases for six-frame translation and IUPAC motif scanning.
+## Automated checks
 
-Coverage includes homepage and health routes, search ranking shape and bounds, source note presence, paper catalogue and detail routes, comparison input validation, evidence brief generation, FASTA syntax and composition, sequence-analysis utilities, translation behavior, motif scanning, malformed/oversized requests, unknown routes, security headers and corpus structural invariants.
+- 21 regression tests pass, including real HTTP requests to a temporary local server.
+- Python lint, formatting and bytecode compilation pass.
+- Mac launcher shell lint and formatting pass.
+- Retrieval smoke evaluation reproduces mean Precision@5 0.64, Hit@5 1.00 and MRR@5 1.00 across five project-team-labelled queries.
 
-## Manual Windows acceptance still required
+## Browser checks
 
-- Extract package outside ZIP preview.
-- Install dependencies with `py -m pip install -r requirements.txt`.
-- Start with `py app.py`; confirm `http://127.0.0.1:8765`.
-- Test one literature query, one FASTA input, one translation input and one motif scan.
-- Confirm downloads for catalogue and protein FASTA work in the browser.
+Verified the user journey from interface through the local API to corpus records and rendered results:
 
-## Limitations
+- Literature search produces ranked papers and original publication links.
+- Reading-list notes persist after reload in the same browser.
+- Two-paper comparison displays attributed notes and source links.
+- Evidence brief renders five source records.
+- FASTA review, reverse complement and ORF analysis render results.
+- Six-frame translation renders six amino-acid sequences.
+- Motif scanning renders match coordinates.
+- Corpus audit passes for all 19 records.
 
-Automated tests establish expected software behavior for the covered cases; they do not establish biological validity, source-record correctness, model performance, usability on every Windows installation or clinical utility. The application has not undergone independent security review, laboratory validation or clinical validation.
+All four reference formats were downloaded and inspected. CSV and JSON each contain 19 records. BibTeX uses separated author fields and RIS includes author tags. The Mac launcher successfully starts the server. The desktop WCAG A/AA audit reports 0 violations and 0 incomplete checks; mobile has no horizontal document overflow. Offscreen mobile navigation items were manually reviewed after an automated contrast check could not inspect them.
+
+Desktop and mobile layouts were inspected. The interface has no em dashes, gradients, bright accent colours or external font dependencies.
+
+## Limits
+
+Windows launch has not been executed on macOS. This does not independently validate scientific statements in the supplied corpus. The original 62-test suite was not recovered and is not claimed to have passed in this repository.

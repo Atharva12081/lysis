@@ -1,7 +1,12 @@
 {
-  "build": "LYSIS Research Desk 4.0-sprint",
-  "file_count": 24,
+  "build": "LYSIS Research Desk 4.1 restoration",
+  "file_count": 32,
   "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "82d78d27b52a55948e1936a95e32d0df3cbc878c85d8bd2ac5b96e00cbb85a4f",
+      "size_bytes": 74
+    },
     {
       "path": "DEMO_QUERIES.txt",
       "sha256": "7a0c40ba0091eda68382cadcf683717376e0fa4d6d421b7a71dd7a2bcfd51d98",
@@ -13,14 +18,24 @@
       "size_bytes": 1279
     },
     {
+      "path": "Launch.command",
+      "sha256": "4b8bef67aadc3f0ad527de1b5ba3bcb1821fa0742155d58f7cd2a7b5285f1f31",
+      "size_bytes": 403
+    },
+    {
       "path": "MANUAL_TEST_CHECKLIST.md",
       "sha256": "a1246386789f9f04d4d4fbb86f66a22cc9fe87054fd90ac8acfa3894f1d144a9",
       "size_bytes": 1078
     },
     {
       "path": "README.md",
-      "sha256": "7fbc1cb588a97d2cfe554a3edf9ca3f0fe35f2c93ada5421551b865a7656aa2c",
-      "size_bytes": 3039
+      "sha256": "2e243173b58ddf338a46f1f6efac2dde56718b099aad9bba4f4efaca0a299184",
+      "size_bytes": 4422
+    },
+    {
+      "path": "RECOVERY.json",
+      "sha256": "c5b0ff6a3968a97a130c1fdbd0cc0ea9d844e856ed13c48d3eb3d1655bc77429",
+      "size_bytes": 4215
     },
     {
       "path": "RESEARCH_SOURCES.md",
@@ -39,28 +54,28 @@
     },
     {
       "path": "SPRINT_CHANGELOG.md",
-      "sha256": "a20be95e82c53688450ae8b53f9645fd8e44a0974aad402e70ffb547bdd16ece",
-      "size_bytes": 1342
+      "sha256": "a039751c9a8c265089e987ec0a7ddf2b520d16169c633a503fe66c7197fc9c32",
+      "size_bytes": 1046
     },
     {
       "path": "TESTS_AND_LIMITATIONS.txt",
-      "sha256": "919734885dfe6d64b718a047861c120ca5960964c3052ca4cfc2ee39a49a42e2",
-      "size_bytes": 362
+      "sha256": "71f349a7151163a3edbf47e3ef0b8290b983f3f7a9f03d22011670cc20dd4085",
+      "size_bytes": 634
     },
     {
       "path": "VALIDATION_REPORT.md",
-      "sha256": "2ba52a81ee4ca25070b748182724c2c99a790296aa21022e17749bf6df39452a",
-      "size_bytes": 1455
+      "sha256": "dae067e32ffb9622787a4caaa583e2c9ae93e2bb72c096ff8d0672bdcafc3954",
+      "size_bytes": 2238
     },
     {
       "path": "app.py",
-      "sha256": "29d02b509dff7775b6665e7c578198b27d968ecd80e54bf131b166a9d994a948",
-      "size_bytes": 17879
+      "sha256": "d46afb96a9a0f7380d5118f1b086adc98507e39d8e4dd5988e56a8f805d8f80b",
+      "size_bytes": 24538
     },
     {
       "path": "build_embeddings.py",
-      "sha256": "282ee21ae3d7abcf720a3d906fda71195414fa523c5749aed23c1a9aa4b9150b",
-      "size_bytes": 16103
+      "sha256": "22b0b6855da9e06714e4ebd1a2318054d0fc259a84b3e0548d39e1ec2c83c5df",
+      "size_bytes": 16896
     },
     {
       "path": "chunk_meta.json",
@@ -68,9 +83,34 @@
       "size_bytes": 24298
     },
     {
+      "path": "docs/original/README.md",
+      "sha256": "7fbc1cb588a97d2cfe554a3edf9ca3f0fe35f2c93ada5421551b865a7656aa2c",
+      "size_bytes": 3039
+    },
+    {
+      "path": "docs/original/SHA256_MANIFEST.json",
+      "sha256": "52ebdf4bc4c1aa2367c52da4b20be0a665325914c358319d0a1082686fb7099f",
+      "size_bytes": 3873
+    },
+    {
+      "path": "docs/original/SPRINT_CHANGELOG.md",
+      "sha256": "a20be95e82c53688450ae8b53f9645fd8e44a0974aad402e70ffb547bdd16ece",
+      "size_bytes": 1342
+    },
+    {
+      "path": "docs/original/TESTS_AND_LIMITATIONS.txt",
+      "sha256": "919734885dfe6d64b718a047861c120ca5960964c3052ca4cfc2ee39a49a42e2",
+      "size_bytes": 362
+    },
+    {
+      "path": "docs/original/VALIDATION_REPORT.md",
+      "sha256": "2ba52a81ee4ca25070b748182724c2c99a790296aa21022e17749bf6df39452a",
+      "size_bytes": 1455
+    },
+    {
       "path": "evaluate_retrieval.py",
-      "sha256": "3a282e16c571fae529cf2b8ae9c53a56090b3ab180ab04ca4008f9ec04cd0ba7",
-      "size_bytes": 2981
+      "sha256": "a5a75f65349ad08769a791c8949912dc50848422cf8dee68219fcfe509390d11",
+      "size_bytes": 3356
     },
     {
       "path": "lsa_index_manifest.json",
@@ -88,14 +128,19 @@
       "size_bytes": 235085
     },
     {
+      "path": "pyproject.toml",
+      "sha256": "bb43a42ad6301845f404c9c5b2d3e19669f542989db8f53b870a05735e068885",
+      "size_bytes": 243
+    },
+    {
       "path": "rag_corpus.jsonl",
       "sha256": "245d9bf1753b4862336dfae04204990e584398e0e0f1d2d733028072be478718",
       "size_bytes": 22685
     },
     {
       "path": "requirements.txt",
-      "sha256": "a83a2a4ed7ab2e022b9b8a83cfa2b8cf52cc243006c597e8b96f90a8365590ac",
-      "size_bytes": 12
+      "sha256": "1204ecd3bb3ac70dfc069e467688b0f057d3a7d6505d5028e1ce33f078483d86",
+      "size_bytes": 16791
     },
     {
       "path": "retrieval_evaluation.json",
@@ -104,23 +149,18 @@
     },
     {
       "path": "static/index.html",
-      "sha256": "d8c85868cdff91324bf58a992bfce723f0a23094e5da23dd2e206bea6ee0ff64",
-      "size_bytes": 31591
+      "sha256": "62dfe44de3b00b58bc30de7a9c45a6d3360ee5bf2dee214f84ceb7d3c06504b5",
+      "size_bytes": 58448
     },
     {
-      "path": "test_results.txt",
-      "sha256": "b97f8824716951a6d7a8f3b19687e9ea22f085e82d1a0fe1317842f9901a2f9b",
-      "size_bytes": 25581
+      "path": "tests/test_workbench.py",
+      "sha256": "dd78004719d7e6ee3ffe2c8b02df535c8297bca54ccc6e1acc61075d5f074c37",
+      "size_bytes": 7992
     },
     {
-      "path": "tests/test_app.py",
-      "sha256": "6ca03da45cc1f8189d67e22324d6647afdfb24c629ea189706da4800a2eb087d",
-      "size_bytes": 12847
-    },
-    {
-      "path": "tests/test_retrieval.py",
-      "sha256": "848474b71b61f4e36104cdfa65583c98b2b310c2686a125a95caa9b5e42bc357",
-      "size_bytes": 2707
+      "path": "uv.lock",
+      "sha256": "9f590f474320413e522206b3ecc247c2057c43c263cae86e3634e0e86c0bdcd3",
+      "size_bytes": 62002
     }
   ]
 }

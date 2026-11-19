@@ -1,21 +1,21 @@
-# LYSIS 4.0 — Next Sprint Changelog
+# Research Desk 4.1
 
-## Added
-- Six-frame translation endpoint and UI using the standard genetic code.
-- Ambiguous codons represented as X, with per-frame counts of amino acids, ambiguous codons and stop codons.
-- Export of six translated frames as a FASTA protein (`.faa`) file.
-- IUPAC motif scan endpoint and UI, supporting degenerate nucleotide codes, overlapping hits and both orientations.
-- 1-based hit coordinates and bounded output (first 500 matches, with truncation flag).
-- Paper catalogue export formats documented: CSV, JSON, RIS and BibTeX.
+## Restored
 
-## Validation
-- 62 automated unit/integration tests passed in the build environment.
-- Added tests for translation frame count, standard codon translation, ambiguous codons, invalid alphabets and empty inputs.
-- Added tests for forward and degenerate motif matching, overlapping hits and invalid patterns.
-- Existing 54 v3 tests retained.
-- Browser JavaScript syntax checked separately; local Windows UI acceptance remains required.
+- Recovered 20 original files by matching supplied SHA-256 checksums.
+- Rebuilt the unavailable web interface and regression suite.
+- Preserved exact recovered source in the initial Git commit and historical documentation in docs/original.
 
-## Scientific boundaries
-- Translation is a six-frame sequence preview, not gene calling or protein annotation.
-- Motif hits do not establish restriction enzyme activity, promoter function, host range, pathogenicity or treatment value.
-- No new biological dataset, phage-host prediction model or clinical decision support was added.
+## Interface
+
+- Muted editorial design using warm neutrals, charcoal text and restrained olive accents.
+- Dedicated search, library, reading-list, brief and sequence workspaces.
+- Responsive desktop and mobile layouts with accessible labels and keyboard controls.
+- Year and subject filters, configurable result counts and source-detail dialogs.
+- Browser-local reading notes, comparison, reference exports and downloadable analysis results.
+
+## Repository
+
+- Locked Python dependencies, Mac launcher, Windows instructions and current verification report.
+- 21 regression tests for the HTTP API, retrieval, corpus integrity and descriptive sequence utilities.
+- Zero violations in the desktop WCAG A/AA browser audit. Mobile viewport has no horizontal document overflow.

@@ -1,0 +1,1668 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f4f3ef" />
+    <meta
+      name="description"
+      content="LYSIS Research Desk. A local workspace for phage literature and descriptive sequence analysis."
+    />
+    <title>LYSIS | Research Desk</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f4f0;
+        --paper: #fffefa;
+        --ink: #282b27;
+        --muted: #686c64;
+        --line: #dedfd7;
+        --accent: #4e5a49;
+        --soft: #e9ece5;
+        --sidebar: #efeee8;
+        --serif: Georgia, "Times New Roman", serif;
+        --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 14px/1.6 var(--sans);
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        outline-offset: 4px;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: wait;
+      }
+      a {
+        color: var(--accent);
+        text-underline-offset: 3px;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        border: 1px solid var(--line);
+        border-radius: 4px;
+      }
+      button {
+        padding: 9px 15px;
+        background: var(--paper);
+        color: var(--ink);
+        transition: background 0.15s;
+      }
+      button:hover {
+        background: var(--soft);
+      }
+      button.primary {
+        background: var(--ink);
+        color: #fffefa;
+        border-color: var(--ink);
+      }
+      button.primary:hover {
+        background: #444a40;
+      }
+      button.text {
+        padding: 4px 0;
+        border: 0;
+        background: transparent;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      input,
+      select,
+      textarea {
+        background: var(--paper);
+        color: var(--ink);
+        padding: 11px 12px;
+      }
+      textarea {
+        width: 100%;
+        resize: vertical;
+        min-height: 140px;
+        font-family: ui-monospace, SFMono-Regular, monospace;
+        font-size: 13px;
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 7px;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+      h1 {
+        font: 400 38px/1.2 var(--serif);
+        letter-spacing: -1px;
+        margin-bottom: 12px;
+      }
+      h2 {
+        font: 400 25px/1.3 var(--serif);
+        letter-spacing: -0.3px;
+        margin-bottom: 14px;
+      }
+      h3 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 9px;
+      }
+      small,
+      .muted {
+        color: var(--muted);
+      }
+      small {
+        font-size: 12px;
+      }
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 1.7px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .app {
+        display: grid;
+        grid-template-columns: 228px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .sidebar {
+        background: var(--sidebar);
+        border-right: 1px solid var(--line);
+        padding: 31px 20px;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+      .brand {
+        font: 400 30px/1 var(--serif);
+        letter-spacing: 4px;
+      }
+      .brand-sub {
+        font-size: 10px;
+        letter-spacing: 1.7px;
+        margin-top: 9px;
+        color: var(--muted);
+      }
+      .sidebar nav {
+        margin-top: 45px;
+      }
+      .nav-label {
+        margin: 26px 12px 8px;
+        font-size: 10px;
+        letter-spacing: 1.4px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .nav-button {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        border: 0;
+        text-align: left;
+        padding: 10px 12px;
+        margin: 3px 0;
+        background: transparent;
+        font-size: 13px;
+      }
+      .nav-button.active {
+        background: #dfe3d9;
+        font-weight: 600;
+        color: #354130;
+      }
+      .nav-number {
+        font-size: 10px;
+        letter-spacing: 0.5px;
+        width: 16px;
+        color: var(--muted);
+      }
+      .nav-button.active .nav-number {
+        color: #354130;
+      }
+      .side-foot {
+        margin-top: auto;
+        padding: 28px 12px 0;
+      }
+      .side-foot p {
+        margin: 10px 0 0;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .status-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #6a7562;
+        margin-right: 7px;
+      }
+      .main {
+        min-width: 0;
+      }
+      .topbar {
+        height: 73px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 42px;
+        font-size: 12px;
+      }
+      .topbar span:first-child {
+        color: var(--muted);
+      }
+      .topbar strong {
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .local-tag {
+        border: 1px solid var(--line);
+        padding: 4px 10px;
+        border-radius: 3px;
+        font-size: 10px;
+        letter-spacing: 0.5px;
+      }
+      .content {
+        max-width: 1400px;
+        margin: auto;
+        padding: 45px 42px 60px;
+      }
+      .intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 20px;
+        margin-bottom: 32px;
+      }
+      .intro .eyebrow {
+        margin-bottom: 15px;
+      }
+      .intro p {
+        max-width: 620px;
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 0;
+      }
+      .edition {
+        text-align: right;
+        white-space: nowrap;
+        font-size: 11px;
+        color: var(--muted);
+        padding-bottom: 4px;
+      }
+      .edition b {
+        display: block;
+        font-weight: 500;
+        font-size: 13px;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 260px;
+        gap: 27px;
+      }
+      .panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 24px;
+      }
+      .search-panel {
+        padding: 25px;
+      }
+      .search-row {
+        display: flex;
+        gap: 10px;
+      }
+      .search-row input {
+        min-width: 0;
+        flex: 1;
+      }
+      .search-panel label {
+        font-size: 11px;
+        letter-spacing: 0.4px;
+        margin-bottom: 11px;
+      }
+      .examples {
+        margin-top: 15px;
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .examples button {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .filters {
+        display: flex;
+        align-items: end;
+        gap: 14px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--line);
+        flex-wrap: wrap;
+      }
+      .filters label {
+        font-size: 10px;
+        color: var(--muted);
+        margin-bottom: 5px;
+      }
+      .filters select,
+      .filters input {
+        padding: 7px 10px;
+        font-size: 12px;
+        max-width: 220px;
+      }
+      .filters .grow {
+        margin-left: auto;
+      }
+      .result-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 24px 0 12px;
+      }
+      .result-heading h2 {
+        font-size: 22px;
+        margin: 0;
+      }
+      .result-list {
+        border-top: 1px solid var(--line);
+      }
+      .paper {
+        padding: 23px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .paper-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .paper-meta {
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+      }
+      .paper h3 {
+        font: 400 21px/1.4 var(--serif);
+        margin: 0 0 10px;
+        max-width: 790px;
+      }
+      .title-button {
+        font: inherit;
+        border: 0;
+        padding: 0;
+        text-align: left;
+        background: none;
+        border-radius: 0;
+      }
+      .title-button:hover {
+        background: none;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      .paper p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0 0 14px;
+        line-height: 1.8;
+      }
+      .paper-actions {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 11px;
+      }
+      .paper-actions button {
+        font-size: 11px;
+      }
+      .pill {
+        font-size: 10px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 2px 7px;
+        color: var(--muted);
+      }
+      .aside-section {
+        padding-bottom: 22px;
+        margin-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .aside-section:last-child {
+        border-bottom: 0;
+        margin: 0;
+        padding-bottom: 0;
+      }
+      .aside-section .eyebrow {
+        margin-bottom: 15px;
+      }
+      .stat {
+        font: 400 38px/1.1 var(--serif);
+        margin: 10px 0 4px;
+      }
+      .aside-section p {
+        font-size: 12px;
+        line-height: 1.8;
+        color: var(--muted);
+        margin: 0;
+      }
+      .aside-section dl {
+        font-size: 11px;
+        margin: 0;
+      }
+      .aside-section dl div {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 7px 0;
+      }
+      .aside-section dt {
+        color: var(--muted);
+      }
+      .aside-section dd {
+        margin: 0;
+      }
+      .aside-section h3 {
+        font-family: var(--serif);
+        font-size: 18px;
+        font-weight: 400;
+      }
+      .aside-section a {
+        font-size: 11px;
+      }
+      .aside-note {
+        padding: 18px 0;
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .notice {
+        padding: 12px 15px;
+        border-left: 2px solid #8a917f;
+        background: var(--soft);
+        font-size: 12px;
+        color: #50574b;
+        margin-bottom: 24px;
+      }
+      .empty {
+        padding: 38px 22px;
+        text-align: center;
+        border: 1px dashed var(--line);
+        color: var(--muted);
+      }
+      .empty h3 {
+        font-family: var(--serif);
+        font-size: 23px;
+        font-weight: 400;
+        color: var(--ink);
+      }
+      .toolbar {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .toolbar select,
+      .toolbar button {
+        font-size: 12px;
+      }
+      .table-wrap {
+        overflow: auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 12px;
+        text-align: left;
+      }
+      th {
+        font-size: 10px;
+        letter-spacing: 0.8px;
+        color: var(--muted);
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+      td,
+      th {
+        padding: 13px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      td.title {
+        min-width: 220px;
+      }
+      .table-wrap .title-button {
+        font-size: 13px;
+      }
+      input[type="checkbox"] {
+        accent-color: var(--accent);
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+      }
+      .compare-check {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        margin: 0;
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .compare-check input {
+        margin: 0;
+      }
+      .form-row {
+        display: flex;
+        gap: 15px;
+        align-items: end;
+        flex-wrap: wrap;
+        margin: 16px 0;
+      }
+      .form-row input {
+        min-width: 160px;
+      }
+      .form-row select {
+        min-width: 90px;
+      }
+      .form-row .primary {
+        margin-left: auto;
+      }
+      .output {
+        margin-top: 24px;
+      }
+      .output pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        font:
+          12px/1.8 ui-monospace,
+          monospace;
+        background: var(--bg);
+        padding: 18px;
+        max-height: 450px;
+        overflow: auto;
+      }
+      .metric-row {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 20px;
+      }
+      .metric-row b {
+        display: block;
+        font: 400 27px var(--serif);
+      }
+      .metric-row span {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      .section-head h2 {
+        margin: 0;
+      }
+      .note-label {
+        margin-top: 14px;
+      }
+      .reading-note {
+        min-height: 76px;
+        font-family: var(--sans);
+        font-size: 12px;
+      }
+      .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+      }
+      .compare-grid h3 {
+        font: 400 20px/1.4 var(--serif);
+      }
+      .compare-grid p {
+        font-size: 12px;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        font-size: 10px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      dialog {
+        max-width: 780px;
+        width: calc(100% - 36px);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 32px;
+        background: var(--paper);
+        color: var(--ink);
+        max-height: 85vh;
+        overflow: auto;
+      }
+      dialog::backdrop {
+        background: rgba(25, 30, 24, 0.4);
+      }
+      dialog h2 {
+        font-size: 28px;
+      }
+      dialog .close {
+        float: right;
+        margin: -12px -12px 15px 20px;
+      }
+      .dialog-note {
+        white-space: pre-wrap;
+        font-size: 13px;
+        line-height: 1.9;
+        color: var(--muted);
+      }
+      #toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        padding: 12px 20px;
+        background: var(--ink);
+        color: white;
+        border-radius: 4px;
+        max-width: 380px;
+        font-size: 12px;
+        z-index: 5;
+      }
+      #error {
+        background: #eee7e1;
+        border-left-color: #8c7161;
+        color: #5d483a;
+      }
+      #busy {
+        font-size: 11px;
+        color: var(--muted);
+        margin-left: auto;
+      }
+      .help-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .help-grid p,
+      .help-grid li {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .scope-list {
+        padding-left: 18px;
+      }
+      .saved-marker {
+        font-size: 10px;
+        color: var(--accent);
+      }
+      @media (min-width: 1600px) {
+        .content {
+          padding-top: 55px;
+        }
+        .workspace {
+          grid-template-columns: minmax(0, 1fr) 285px;
+          gap: 36px;
+        }
+        .paper {
+          padding: 27px 0;
+        }
+      }
+      @media (max-width: 1100px) {
+        .workspace {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .context {
+          display: none;
+        }
+        .content {
+          padding: 32px 28px;
+        }
+        .topbar {
+          padding: 0 28px;
+        }
+        .app {
+          grid-template-columns: 205px minmax(0, 1fr);
+        }
+        .sidebar {
+          padding: 28px 14px;
+        }
+        .edition {
+          display: none;
+        }
+      }
+      @media (max-width: 720px) {
+        .app {
+          display: block;
+        }
+        .sidebar {
+          position: static;
+          height: auto;
+          padding: 20px;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .brand {
+          font-size: 25px;
+        }
+        .brand-sub {
+          font-size: 9px;
+        }
+        .sidebar nav {
+          display: flex;
+          overflow: auto;
+          gap: 6px;
+          margin-top: 20px;
+        }
+        .nav-label,
+        .side-foot {
+          display: none;
+        }
+        .nav-button {
+          width: auto;
+          white-space: nowrap;
+          padding: 9px 12px;
+          margin: 0;
+        }
+        .nav-number {
+          display: none;
+        }
+        .topbar {
+          height: 52px;
+          padding: 0 20px;
+        }
+        .topbar .local-tag {
+          font-size: 9px;
+        }
+        .content {
+          padding: 28px 20px 35px;
+        }
+        h1 {
+          font-size: 32px;
+        }
+        .intro {
+          margin-bottom: 25px;
+        }
+        .search-panel {
+          padding: 18px;
+        }
+        .search-row {
+          flex-direction: column;
+        }
+        .search-row .primary {
+          align-self: flex-end;
+        }
+        .examples {
+          gap: 10px;
+        }
+        .filters {
+          gap: 12px;
+        }
+        .filters .grow {
+          margin-left: 0;
+        }
+        .paper h3 {
+          font-size: 20px;
+        }
+        .help-grid {
+          grid-template-columns: 1fr;
+        }
+        .panel {
+          padding: 20px;
+        }
+        .footer {
+          display: block;
+        }
+        .footer span {
+          display: block;
+          margin-bottom: 5px;
+        }
+        .form-row .primary {
+          margin-left: 0;
+        }
+        .form-row {
+          align-items: stretch;
+          flex-direction: column;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" aria-label="Application navigation">
+        <div class="brand">LYSIS</div>
+        <div class="brand-sub">RESEARCH DESK</div>
+        <nav aria-label="Workspace">
+          <div class="nav-label">Literature</div>
+          <button class="nav-button active" data-view="search">
+            <span class="nav-number">01</span>Literature search
+          </button>
+          <button class="nav-button" data-view="explorer">
+            <span class="nav-number">02</span>Paper library
+          </button>
+          <button class="nav-button" data-view="reading">
+            <span class="nav-number">03</span>Reading list
+          </button>
+          <button class="nav-button" data-view="brief">
+            <span class="nav-number">04</span>Evidence brief
+          </button>
+          <div class="nav-label">Sequence tools</div>
+          <button class="nav-button" data-view="fasta">
+            <span class="nav-number">05</span>FASTA review
+          </button>
+          <button class="nav-button" data-view="sequence">
+            <span class="nav-number">06</span>Sequence analysis
+          </button>
+          <button class="nav-button" data-view="translate">
+            <span class="nav-number">07</span>Translation
+          </button>
+          <button class="nav-button" data-view="motif">
+            <span class="nav-number">08</span>Motif search
+          </button>
+          <div class="nav-label">Reference</div>
+          <button class="nav-button" data-view="scope">
+            <span class="nav-number">09</span>Corpus &amp; methods
+          </button>
+        </nav>
+        <div class="side-foot">
+          <small><span class="status-dot"></span>Local workspace</small>
+          <p>Literature research and descriptive sequence analysis.</p>
+          <p>Research use only.</p>
+        </div>
+      </aside>
+      <main class="main" id="main">
+        <header class="topbar">
+          <span
+            >Workspace <span aria-hidden="true">/</span>
+            <strong id="breadcrumb">Literature search</strong></span
+          ><span class="local-tag">LOCAL CONNECTION</span>
+        </header>
+        <div class="content">
+          <div class="intro">
+            <div>
+              <div class="eyebrow">PHAGE RESEARCH WORKSPACE</div>
+              <h1 id="page-title">Literature search</h1>
+              <p id="page-description">
+                Find relevant literature, examine the evidence and keep your
+                research in order.
+              </p>
+            </div>
+            <div class="edition"><b>Research Desk 4.1</b>Local edition</div>
+          </div>
+          <div id="error" class="notice hidden" role="alert"></div>
+          <div class="workspace">
+            <div id="view"></div>
+            <aside class="context" aria-label="Workspace information">
+              <div class="panel">
+                <section class="aside-section">
+                  <div class="eyebrow">THE COLLECTION</div>
+                  <div class="stat" id="corpus-count">19</div>
+                  <p>papers in the starter corpus</p>
+                  <dl>
+                    <div>
+                      <dt>Coverage</dt>
+                      <dd id="year-range">Loading</dd>
+                    </div>
+                    <div>
+                      <dt>Source records</dt>
+                      <dd>Curated notes</dd>
+                    </div>
+                    <div>
+                      <dt>Access</dt>
+                      <dd>Local</dd>
+                    </div>
+                  </dl>
+                </section>
+                <section class="aside-section">
+                  <div class="eyebrow">RESEARCH PRACTICE</div>
+                  <h3>Start with the source.</h3>
+                  <p>
+                    Results link to original publications. Read the paper before
+                    interpreting a finding or using a citation.
+                  </p>
+                </section>
+                <section class="aside-section">
+                  <div class="eyebrow">YOUR WORKSPACE</div>
+                  <dl>
+                    <div>
+                      <dt>Saved papers</dt>
+                      <dd id="saved-count">0</dd>
+                    </div>
+                    <div>
+                      <dt>Selected for comparison</dt>
+                      <dd id="compare-count">0 / 4</dd>
+                    </div>
+                  </dl>
+                  <button
+                    class="text"
+                    id="compare-button"
+                    style="margin-top: 12px; font-size: 11px"
+                  >
+                    Compare selected papers
+                  </button>
+                </section>
+              </div>
+              <p class="aside-note">
+                Ranking scores describe retrieval relevance. They do not
+                indicate treatment efficacy or clinical confidence.
+              </p>
+            </aside>
+          </div>
+          <footer class="footer">
+            <span>LYSIS Research Desk · Team Tech Titans</span
+            ><span>Educational research support · No patient data</span>
+          </footer>
+        </div>
+      </main>
+    </div>
+    <dialog id="paper-dialog" aria-labelledby="dialog-title">
+      <button class="close" id="dialog-close">Close</button>
+      <div id="dialog-content"></div>
+    </dialog>
+    <div id="toast" class="hidden" role="status"></div>
+    <script>
+      "use strict";
+      const $ = (s) => document.querySelector(s);
+      const clean = (value) =>
+        String(value ?? "").replace(/[\u2014\u2013]/g, " - ");
+      const esc = (value) =>
+        clean(value).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      let saved = {};
+      try {
+        saved = JSON.parse(localStorage.getItem("lysis-reading-v1") || "{}");
+        if (!saved || Array.isArray(saved) || typeof saved !== "object")
+          saved = {};
+      } catch {
+        saved = {};
+      }
+      const state = {
+        view: "search",
+        papers: [],
+        results: null,
+        query: "",
+        year: "",
+        area: "",
+        limit: 5,
+        selected: new Set(),
+        saved,
+        lastExport: null,
+      };
+      const pages = {
+        search: [
+          "Literature search",
+          "Find relevant literature, examine the evidence and keep your research in order.",
+        ],
+        explorer: [
+          "Paper library",
+          "Browse the collection, compare papers and export references for your own work.",
+        ],
+        reading: [
+          "Reading list",
+          "A personal collection of papers and notes, saved in this browser.",
+        ],
+        brief: [
+          "Evidence brief",
+          "Compile attributed research notes and source links for a focused question.",
+        ],
+        fasta: [
+          "FASTA review",
+          "Check nucleotide records, sequence composition and assembly length statistics.",
+        ],
+        sequence: [
+          "Sequence analysis",
+          "Inspect reverse complements, k-mer frequencies and exploratory open reading frames.",
+        ],
+        translate: [
+          "Translation",
+          "Review all six reading frames using the standard genetic code.",
+        ],
+        motif: [
+          "Motif search",
+          "Locate IUPAC nucleotide patterns on both orientations of a sequence.",
+        ],
+        scope: [
+          "Corpus & methods",
+          "Understand the collection, retrieval method and boundaries of this workbench.",
+        ],
+      };
+      async function api(path, body) {
+        const response = await fetch(
+          path,
+          body === undefined
+            ? {}
+            : {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+              },
+        );
+        const data = await response.json();
+        if (!response.ok)
+          throw Error(data.error || "The request could not be completed.");
+        return data;
+      }
+      function error(message) {
+        $("#error").textContent = clean(message);
+        $("#error").classList.toggle("hidden", !message);
+      }
+      let toastTimer;
+      function toast(message) {
+        $("#toast").textContent = message;
+        $("#toast").classList.remove("hidden");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(
+          () => $("#toast").classList.add("hidden"),
+          3000,
+        );
+      }
+      async function run(button, work) {
+        error("");
+        const text = button?.textContent;
+        if (button) {
+          button.disabled = true;
+          button.textContent = "Working...";
+        }
+        try {
+          await work();
+        } catch (e) {
+          error(e.message);
+        } finally {
+          if (button) {
+            button.disabled = false;
+            button.textContent = text;
+          }
+        }
+      }
+      function counts() {
+        $("#saved-count").textContent = Object.keys(state.saved).filter((id) =>
+          state.papers.some((p) => p.paper_id === id),
+        ).length;
+        $("#compare-count").textContent = state.selected.size + " / 4";
+      }
+      function persist() {
+        try {
+          localStorage.setItem("lysis-reading-v1", JSON.stringify(state.saved));
+          counts();
+          return true;
+        } catch {
+          error(
+            "This browser could not save the reading list. Check browser storage settings.",
+          );
+          return false;
+        }
+      }
+      function download(name, text, type = "text/plain") {
+        const blob = new Blob([clean(text)], { type });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      }
+      function safeLink(url) {
+        try {
+          const u = new URL(url);
+          return u.protocol === "https:" ? esc(u.href) : "#";
+        } catch {
+          return "#";
+        }
+      }
+      function filterPapers(rows) {
+        return rows.filter(
+          (p) =>
+            (!state.year || String(p.year) === state.year) &&
+            (!state.area || p.areas?.includes(state.area)),
+        );
+      }
+      function filters() {
+        const years = [...new Set(state.papers.map((p) => p.year))].sort(
+            (a, b) => b - a,
+          ),
+          areas = [
+            ...new Set(state.papers.flatMap((p) => p.areas || [])),
+          ].sort();
+        return `<div class="filters"><div><label for="year-filter">YEAR</label><select id="year-filter"><option value="">All years</option>${years.map((y) => `<option ${String(y) === state.year ? "selected" : ""}>${y}</option>`).join("")}</select></div><div><label for="area-filter">SUBJECT</label><select id="area-filter"><option value="">All subjects</option>${areas.map((a) => `<option ${a === state.area ? "selected" : ""}>${esc(a)}</option>`).join("")}</select></div><div><label for="result-limit">SHOW</label><select id="result-limit">${[5, 10, 20].map((n) => `<option value="${n}" ${state.limit === n ? "selected" : ""}>${n === 20 ? "All papers" : n + " papers"}</option>`).join("")}</select></div><div class="grow"><button class="text" data-action="clear-filters" style="font-size:11px">Reset filters</button></div></div>`;
+      }
+      function card(p) {
+        const saved = !!state.saved[p.paper_id];
+        return `<article class="paper"><div class="paper-top"><span class="paper-meta">${esc(p.paper_id)} &nbsp; / &nbsp; ${esc(p.year)} &nbsp; / &nbsp; ${esc(p.venue)}</span>${p.score !== undefined ? `<span class="pill">Relevance ${p.score.toFixed(3)}</span>` : ""}</div><h3><button class="title-button" data-open="${esc(p.paper_id)}">${esc(p.title)}</button></h3>${p.snippet ? `<p>${esc(p.snippet)}</p>` : `<p>${esc((p.areas || []).join(" · "))}</p>`}<div class="paper-actions"><a href="${safeLink(p.source_url || "https://doi.org/" + p.doi)}" target="_blank" rel="noopener noreferrer">View publication</a><button class="text" data-save="${esc(p.paper_id)}">${saved ? "Remove from reading list" : "Save to reading list"}</button><label class="compare-check"><input type="checkbox" data-compare="${esc(p.paper_id)}" ${state.selected.has(p.paper_id) ? "checked" : ""}> Compare</label></div></article>`;
+      }
+      function empty(title, description) {
+        return `<div class="empty"><h3>${title}</h3><p>${description}</p></div>`;
+      }
+      function searchView() {
+        const rows = filterPapers(state.results ?? state.papers).slice(
+          0,
+          state.limit,
+        );
+        return `<form id="search-form" class="panel search-panel"><label for="search-input">RESEARCH QUESTION OR TOPIC</label><div class="search-row"><input id="search-input" maxlength="1000" placeholder="e.g. Pseudomonas biofilm and phage resistance" value="${esc(state.query)}" required><button class="primary">Search literature</button></div><div class="examples"><small>Try a topic:</small>${["Phage antibiotic synergy", "Clinical outcomes", "MedCPT retrieval"].map((q) => `<button type="button" class="text" data-query="${q}">${q}</button>`).join("")}</div></form>${filters()}<div class="result-heading"><h2>${state.results === null ? "From the collection" : "Search results"}</h2><small>${rows.length} papers${state.results === null ? " selected" : ""}</small></div>${state.results !== null ? '<p class="muted" style="font-size:11px">0.65 × LSA similarity + 0.35 × query-term coverage</p>' : ""}<div class="result-list">${rows.length ? rows.map(card).join("") : empty("No papers found", "Try a broader topic or reset the filters.")}</div>`;
+      }
+      function explorerView() {
+        const q = state.libraryQuery || "";
+        const rows = filterPapers(state.papers).filter((p) =>
+          JSON.stringify(p).toLowerCase().includes(q.toLowerCase()),
+        );
+        state.exportRows = rows;
+        return `<div class="panel"><label for="library-query">FILTER THE COLLECTION</label><input style="width:100%" id="library-query" placeholder="Search titles, authors or subjects" value="${esc(q)}">${filters()}<div class="toolbar" style="margin-top:20px"><small>${rows.length} papers</small><button id="compare-library">Compare selected (${state.selected.size})</button><select id="export-format" aria-label="Reference export format"><option>CSV</option><option>JSON</option><option>BibTeX</option><option>RIS</option></select><button id="export-library">Export references</button></div><div class="table-wrap"><table><thead><tr><th>Select</th><th>Publication</th><th>Year</th><th>Source</th></tr></thead><tbody>${rows.map((p) => `<tr><td><input type="checkbox" aria-label="Compare ${esc(p.paper_id)}" data-compare="${esc(p.paper_id)}" ${state.selected.has(p.paper_id) ? "checked" : ""}></td><td class="title"><small>${esc(p.paper_id)}</small><br><button class="title-button" data-open="${esc(p.paper_id)}">${esc(p.title)}</button></td><td>${esc(p.year)}</td><td>${esc(p.venue)}</td></tr>`).join("")}</tbody></table></div>${rows.length ? "" : empty("No matching papers", "Adjust your search or filters.")}</div>`;
+      }
+      function readingView() {
+        const rows = state.papers.filter((p) => state.saved[p.paper_id]);
+        return `<div class="notice">Your reading list stays in this browser. Export a backup to keep a separate copy of papers and notes.</div><div class="toolbar"><small>${rows.length} saved papers</small><button id="export-reading">Export reading list</button></div>${rows.length ? rows.map((p) => `<div>${card(p)}<label class="note-label" for="note-${p.paper_id}">Personal notes</label><textarea class="reading-note" id="note-${p.paper_id}" data-note="${p.paper_id}" placeholder="Add observations, questions or follow-up reading">${esc(state.saved[p.paper_id].note || "")}</textarea><small data-note-status="${p.paper_id}">Saved locally</small></div>`).join("") : empty("A place for your reading", "Save a paper from literature search or the paper library to begin.")}`;
+      }
+      function briefView() {
+        return `<div class="notice">This brief compiles existing corpus notes and citations. Verify the original publications before using them in your research.</div><form id="brief-form" class="panel"><label for="brief-query">RESEARCH TOPIC</label><input id="brief-query" style="width:100%" placeholder="e.g. Phage antibiotic combinations for biofilm infections" maxlength="1000" required><div class="form-row"><div><label for="brief-k">Number of papers</label><select id="brief-k"><option>3</option><option selected>5</option><option>10</option></select></div><button class="primary">Compile evidence brief</button></div></form><div id="brief-output" class="output" aria-live="polite"></div>`;
+      }
+      const demoSequence = "ATG" + "GCT".repeat(30) + "TAA";
+      function sequenceView(kind) {
+        const fasta = kind === "fasta";
+        return `<div class="panel"><form id="sequence-form"><div class="section-head"><label for="sequence-input">${fasta ? "FASTA RECORDS" : "NUCLEOTIDE SEQUENCE"}</label><button type="button" class="text" id="sample-sequence" style="font-size:11px">Load example</button></div><textarea id="sequence-input" rows="7" spellcheck="false" placeholder="${fasta ? ">record_1\nATGCGTACGTAGCTAGCTAG" : "ATGCGTACGTAGCTAGCTAG"}" required></textarea><small>${fasta ? "FASTA headers and IUPAC nucleotide symbols. Maximum 1.5 MB." : "IUPAC nucleotide symbols. Maximum 100,000 nucleotides."}</small><div class="form-row">${kind === "sequence" ? '<div><label for="kmer-size">k-mer size</label><select id="kmer-size"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></div>' : ""}${kind === "motif" ? '<div><label for="motif-input">IUPAC motif</label><input id="motif-input" placeholder="e.g. GANTC" maxlength="100" required></div>' : ""}<button class="primary">${{ fasta: "Review FASTA", sequence: "Analyse sequence", translate: "Translate sequence", motif: "Find motif matches" }[kind]}</button></div></form></div><div id="sequence-output" class="output" aria-live="polite"></div><p class="aside-note">${{ fasta: "Format and composition checks only. No genome annotation is performed.", sequence: "ORF candidates use an ATG-to-stop scan with a minimum length of 90 nucleotides. They are not validated genes.", translate: "Standard genetic code. Ambiguous codons appear as X and stop codons as *. Partial terminal codons are omitted.", motif: "Matches are sequence observations. Ambiguous motif symbols match canonical bases. Ambiguous bases in the supplied sequence are not expanded." }[kind]}</p>`;
+      }
+      function scopeView() {
+        return `<div class="help-grid"><section class="panel"><div class="eyebrow">COLLECTION</div><h2 style="margin-top:14px">A focused starting point</h2><p>The application contains ${state.papers.length} bibliographic records with attributed research notes. This starter corpus is separate from the larger survey catalogue in project materials.</p><p>Notes are not full-text papers. Follow DOI links and inspect the original publications before citing their findings.</p><button id="audit-button">Run corpus audit</button><div id="audit-output" class="output" aria-live="polite"></div></section><section class="panel"><div class="eyebrow">METHOD</div><h2 style="margin-top:14px">Transparent retrieval</h2><p>Titles, subject tags and research notes are tokenised and represented with TF-IDF. Truncated singular value decomposition produces the local LSA index.</p><p>The ranking combines 65% LSA cosine similarity with 35% query-term coverage. Scores are ranking values. The lexical component is not BM25.</p><p>The included five-query smoke evaluation uses project-team relevance labels. It is not an independent benchmark.</p></section><section class="panel"><h2>Working locally</h2><p>The server listens on 127.0.0.1. Search and sequence utilities run on this computer. Reading lists and personal notes use browser local storage.</p><p>External publication sites are visited only when you open their links. Do not enter patient-identifiable data.</p></section><section class="panel"><h2>Scope of use</h2><p>Literature retrieval, reference exports and descriptive nucleotide utilities support educational research.</p><p>This application does not provide phage-host prediction, validated gene annotation, treatment recommendations, MedCPT inference or generated scientific synthesis.</p></section></div>`;
+      }
+      function render() {
+        const [title, description] = pages[state.view];
+        $("#page-title").textContent = title;
+        $("#page-description").textContent = description;
+        $("#breadcrumb").textContent = title;
+        document.title = title + " | LYSIS";
+        document.querySelectorAll("[data-view]").forEach((b) => {
+          const current = b.dataset.view === state.view;
+          b.classList.toggle("active", current);
+          if (current) b.setAttribute("aria-current", "page");
+          else b.removeAttribute("aria-current");
+        });
+        $("#view").innerHTML =
+          state.view === "search"
+            ? searchView()
+            : state.view === "explorer"
+              ? explorerView()
+              : state.view === "reading"
+                ? readingView()
+                : state.view === "brief"
+                  ? briefView()
+                  : state.view === "scope"
+                    ? scopeView()
+                    : sequenceView(state.view);
+        counts();
+        bind();
+      }
+      function navigate(view) {
+        state.view = view;
+        error("");
+        render();
+      }
+      async function search(query, button) {
+        await run(button, async () => {
+          const data = await api("/api/search", { query, k: 20 });
+          state.query = query;
+          state.results = data.results;
+          render();
+        });
+      }
+      function exportReferences() {
+        const rows = state.exportRows || state.papers;
+        const format = $("#export-format").value;
+        let text, ext;
+        const citeSafe = (v) => clean(v).replace(/[{}\\]/g, " ");
+        const authors = (p) =>
+          clean(p.authors || "")
+            .replace(/\s+et al\.?$/, "")
+            .split(/\s*,\s*/)
+            .filter(Boolean);
+        const bibAuthors = (p) =>
+          [
+            ...authors(p),
+            ...(/et al\.?$/.test(p.authors || "") ? ["others"] : []),
+          ]
+            .map(citeSafe)
+            .join(" and ");
+        if (format === "JSON") {
+          text = JSON.stringify(rows, null, 2);
+          ext = "json";
+        } else if (format === "CSV") {
+          const keys = ["paper_id", "title", "authors", "year", "venue", "doi"];
+          const csv = (v) => '"' + clean(v).replace(/"/g, '""') + '"';
+          text = [
+            keys.join(","),
+            ...rows.map((p) => keys.map((k) => csv(p[k])).join(",")),
+          ].join("\r\n");
+          ext = "csv";
+        } else if (format === "BibTeX") {
+          text = rows
+            .map(
+              (p) =>
+                `@article{${p.paper_id},\n  title={${citeSafe(p.title)}},\n  author={${bibAuthors(p)}},\n  year={${p.year}},\n  journal={${citeSafe(p.venue)}},\n  doi={${citeSafe(p.doi)}}\n}`,
+            )
+            .join("\n\n");
+          ext = "bib";
+        } else {
+          text = rows
+            .map(
+              (p) =>
+                `TY  - JOUR\nID  - ${clean(p.paper_id)}\nTI  - ${clean(p.title)}\n${authors(
+                  p,
+                )
+                  .map((a) => "AU  - " + a + "\n")
+                  .join(
+                    "",
+                  )}PY  - ${p.year}\nJO  - ${clean(p.venue)}\nDO  - ${clean(p.doi)}\nUR  - ${clean(p.source_url)}\nN1  - Exported from starter corpus. Verify author completeness against original publication.\nER  - `,
+            )
+            .join("\n\n");
+          ext = "ris";
+        }
+        download("lysis-references." + ext, text);
+        toast("References exported");
+      }
+      function metrics(items) {
+        return (
+          '<div class="metric-row">' +
+          items
+            .map(
+              ([label, value]) =>
+                `<div><b>${esc(value)}</b><span>${esc(label)}</span></div>`,
+            )
+            .join("") +
+          "</div>"
+        );
+      }
+      function table(headers, rows) {
+        return (
+          '<div class="table-wrap"><table><thead><tr>' +
+          headers.map((h) => `<th>${esc(h)}</th>`).join("") +
+          "</tr></thead><tbody>" +
+          rows
+            .map(
+              (r) =>
+                "<tr>" + r.map((c) => `<td>${esc(c)}</td>`).join("") + "</tr>",
+            )
+            .join("") +
+          "</tbody></table></div>"
+        );
+      }
+      function showSequence(data, kind) {
+        let html = "",
+          file = "lysis-" + kind + ".json",
+          text = JSON.stringify(data, null, 2);
+        if (kind === "fasta") {
+          html =
+            `<h2>${data.valid ? "FASTA review complete" : "Review the following issues"}</h2>` +
+            (data.errors.length
+              ? "<p>" + data.errors.map(esc).join("<br>") + "</p>"
+              : "") +
+            (data.summary
+              ? metrics([
+                  ["Records", data.summary.record_count],
+                  ["Total nucleotides", data.summary.total_length],
+                  ["N50", data.summary.n50],
+                ])
+              : "") +
+            table(
+              ["Record", "Length", "GC %", "Ambiguous bases"],
+              data.records.map((r) => [
+                r.header,
+                r.length,
+                r.gc_percent,
+                r.ambiguous_count,
+              ]),
+            );
+        } else if (kind === "sequence") {
+          html =
+            "<h2>Sequence analysis</h2>" +
+            metrics([
+              ["Nucleotides", data.length_nt],
+              ["GC %", data.gc_percent],
+              ["ORF candidates", data.orf_candidates.length],
+            ]) +
+            "<h3>Reverse complement</h3><pre>" +
+            esc(data.reverse_complement) +
+            "</pre><h3>Most frequent k-mers</h3>" +
+            table(
+              ["k-mer", "Count"],
+              data.top_kmers.map((r) => [r.kmer, r.count]),
+            ) +
+            '<h3 style="margin-top:24px">Exploratory ORF candidates</h3>' +
+            table(
+              ["Strand", "Frame", "Start", "End", "Length"],
+              data.orf_candidates.map((r) => [
+                r.strand,
+                r.frame,
+                r.start_1based,
+                r.end_1based,
+                r.length_nt,
+              ]),
+            ) +
+            '<p class="aside-note">Negative-strand ORF coordinates refer to the reverse-complement sequence.</p>';
+        } else if (kind === "translate") {
+          html =
+            "<h2>Six-frame translation</h2>" +
+            data.frames
+              .map(
+                (f) =>
+                  "<h3>Frame " +
+                  f.strand +
+                  f.frame +
+                  " <small> / " +
+                  f.aa_length +
+                  " amino acids / " +
+                  f.stop_count +
+                  " stops</small></h3><pre>" +
+                  esc(f.amino_acids || "(No complete codons)") +
+                  "</pre>",
+              )
+              .join("");
+          file = "lysis-translation.faa";
+          text = data.frames
+            .map((f) => ">frame_" + f.strand + f.frame + "\n" + f.amino_acids)
+            .join("\n");
+        } else {
+          html =
+            "<h2>Motif matches</h2>" +
+            metrics([
+              ["Matches", data.hit_count],
+              ["Motif", data.motif],
+              ["Reverse complement", data.reverse_complement_motif],
+            ]) +
+            (data.truncated ? "<p>Showing the first 500 matches.</p>" : "") +
+            (data.hits.length
+              ? table(
+                  ["Strand", "Start (1-based)", "End (1-based)", "Sequence"],
+                  data.hits.map((h) => [
+                    h.strand,
+                    h.start_1based,
+                    h.end_1based,
+                    h.matched_sequence,
+                  ]),
+                )
+              : '<p class="muted">No matches found for this motif.</p>');
+        }
+        $("#sequence-output").innerHTML =
+          '<div class="panel">' +
+          html +
+          '<button id="download-sequence" style="margin-top:20px">Download results</button><p class="aside-note">' +
+          esc(data.scope || data.orf_scope || "") +
+          "</p></div>";
+        $("#download-sequence").onclick = () => download(file, text);
+      }
+      async function openPaper(id) {
+        await run(null, async () => {
+          const p = await api("/api/paper?id=" + encodeURIComponent(id));
+          $("#dialog-content").innerHTML =
+            `<div class="eyebrow">${esc(p.paper_id)} / ${esc(p.year)} / ${esc(p.venue)}</div><h2 id="dialog-title" style="margin-top:17px">${esc(p.title)}</h2><p class="muted">${esc(p.authors || "Author metadata not supplied")}</p><p><a href="${safeLink(p.source_url)}" target="_blank" rel="noopener noreferrer">Open original publication</a></p><h3 style="margin-top:24px">Attributed research note</h3><p class="dialog-note">${esc(p.text)}</p><p class="aside-note">Corpus notes are not a substitute for reading the original publication.</p><button id="dialog-save">${state.saved[id] ? "Remove from reading list" : "Save to reading list"}</button>`;
+          $("#dialog-save").onclick = () => {
+            toggleSave(id);
+            $("#dialog-save").textContent = state.saved[id]
+              ? "Remove from reading list"
+              : "Save to reading list";
+          };
+          $("#paper-dialog").showModal();
+        });
+      }
+      function toggleSave(id) {
+        if (state.saved[id]) delete state.saved[id];
+        else state.saved[id] = { note: "", saved_at: new Date().toISOString() };
+        if (persist())
+          toast(
+            state.saved[id]
+              ? "Paper saved to your reading list"
+              : "Paper removed from your reading list",
+          );
+        render();
+      }
+      async function compare() {
+        if (state.selected.size < 2) {
+          error("Select 2 to 4 papers using the Compare checkboxes.");
+          return;
+        }
+        await run(null, async () => {
+          const data = await api("/api/compare", {
+            paper_ids: [...state.selected],
+          });
+          $("#dialog-content").innerHTML =
+            '<h2 id="dialog-title">Paper comparison</h2><p class="muted">Metadata and attributed research notes</p><div class="compare-grid">' +
+            data.papers
+              .map(
+                (p) =>
+                  `<article><div class="eyebrow">${esc(p.paper_id)} / ${esc(p.year)}</div><h3 style="margin-top:12px">${esc(p.title)}</h3><p>${esc(p.venue)}</p><p><a href="https://doi.org/${esc(p.doi)}" target="_blank" rel="noopener noreferrer">View publication</a></p><p>${esc(p.text)}</p></article>`,
+              )
+              .join("") +
+            "</div>";
+          $("#paper-dialog").showModal();
+        });
+      }
+      function bind() {
+        document
+          .querySelectorAll("[data-open]")
+          .forEach((b) => (b.onclick = () => openPaper(b.dataset.open)));
+        document
+          .querySelectorAll("[data-save]")
+          .forEach((b) => (b.onclick = () => toggleSave(b.dataset.save)));
+        document.querySelectorAll("[data-compare]").forEach(
+          (b) =>
+            (b.onchange = () => {
+              if (b.checked) {
+                if (state.selected.size >= 4) {
+                  b.checked = false;
+                  error("Choose up to 4 papers for comparison.");
+                  return;
+                }
+                state.selected.add(b.dataset.compare);
+              } else state.selected.delete(b.dataset.compare);
+              counts();
+              if ($("#compare-library"))
+                $("#compare-library").textContent =
+                  "Compare selected (" + state.selected.size + ")";
+            }),
+        );
+        document.querySelectorAll("[data-note]").forEach(
+          (b) =>
+            (b.oninput = () => {
+              state.saved[b.dataset.note].note = b.value;
+              const ok = persist();
+              document.querySelector(
+                `[data-note-status="${b.dataset.note}"]`,
+              ).textContent = ok ? "Saved locally" : "Could not save";
+            }),
+        );
+        if ($("#search-form"))
+          $("#search-form").onsubmit = (e) => {
+            e.preventDefault();
+            search($("#search-input").value.trim(), e.submitter);
+          };
+        document
+          .querySelectorAll("[data-query]")
+          .forEach((b) => (b.onclick = () => search(b.dataset.query, b)));
+        if ($("#result-limit"))
+          $("#result-limit").onchange = (e) => {
+            state.limit = Number(e.target.value);
+            render();
+          };
+        if ($("#year-filter"))
+          $("#year-filter").onchange = (e) => {
+            state.year = e.target.value;
+            render();
+          };
+        if ($("#area-filter"))
+          $("#area-filter").onchange = (e) => {
+            state.area = e.target.value;
+            render();
+          };
+        const clear = $('[data-action="clear-filters"]');
+        if (clear)
+          clear.onclick = () => {
+            state.year = "";
+            state.area = "";
+            render();
+          };
+        if ($("#library-query"))
+          $("#library-query").oninput = (e) => {
+            const pos = e.target.selectionStart;
+            state.libraryQuery = e.target.value;
+            render();
+            $("#library-query").focus();
+            $("#library-query").setSelectionRange(pos, pos);
+          };
+        if ($("#export-library"))
+          $("#export-library").onclick = exportReferences;
+        if ($("#compare-library")) $("#compare-library").onclick = compare;
+        if ($("#export-reading"))
+          $("#export-reading").onclick = () =>
+            download(
+              "lysis-reading-list.json",
+              JSON.stringify(
+                {
+                  exported_at: new Date().toISOString(),
+                  papers: state.papers
+                    .filter((p) => state.saved[p.paper_id])
+                    .map((p) => ({ ...p, ...state.saved[p.paper_id] })),
+                },
+                null,
+                2,
+              ),
+            );
+        if ($("#brief-form"))
+          $("#brief-form").onsubmit = (e) => {
+            e.preventDefault();
+            run(e.submitter, async () => {
+              const d = await api("/api/brief", {
+                query: $("#brief-query").value.trim(),
+                k: Number($("#brief-k").value),
+              });
+              const md =
+                "# " +
+                clean(d.query) +
+                "\n\n" +
+                d.caveat +
+                "\n\n" +
+                d.records
+                  .map(
+                    (r) =>
+                      "## " +
+                      clean(r.title) +
+                      "\n\n" +
+                      clean(r.citation) +
+                      "\n\n" +
+                      clean(r.research_note),
+                  )
+                  .join("\n\n");
+              $("#brief-output").innerHTML =
+                '<div class="panel"><div class="section-head"><h2>Evidence brief</h2><button id="download-brief">Download Markdown</button></div><p class="muted">' +
+                esc(d.query) +
+                "</p>" +
+                d.records
+                  .map(
+                    (r) =>
+                      '<article class="paper"><div class="paper-meta">' +
+                      esc(r.paper_id) +
+                      " / " +
+                      r.year +
+                      '</div><h3 style="margin-top:10px">' +
+                      esc(r.title) +
+                      "</h3><p>" +
+                      esc(r.research_note) +
+                      '</p><a href="' +
+                      safeLink(r.source_url) +
+                      '" target="_blank" rel="noopener noreferrer">View source</a></article>',
+                  )
+                  .join("") +
+                (d.records.length
+                  ? ""
+                  : empty(
+                      "No matching sources",
+                      "Try another research topic.",
+                    )) +
+                "</div>";
+              $("#download-brief").onclick = () =>
+                download("lysis-evidence-brief.md", md, "text/markdown");
+            });
+          };
+        if ($("#sample-sequence"))
+          $("#sample-sequence").onclick = () => {
+            $("#sequence-input").value =
+              state.view === "fasta"
+                ? ">example_sequence\n" + demoSequence
+                : demoSequence;
+            if ($("#motif-input")) $("#motif-input").value = "GCT";
+          };
+        if ($("#sequence-form"))
+          $("#sequence-form").onsubmit = (e) => {
+            e.preventDefault();
+            const kind = state.view;
+            const routes = {
+              fasta: "/api/fasta",
+              sequence: "/api/sequence-analysis",
+              translate: "/api/translate",
+              motif: "/api/motif-scan",
+            };
+            const input = $("#sequence-input").value;
+            const body =
+              kind === "fasta"
+                ? { fasta: input }
+                : {
+                    sequence: input,
+                    k: Number($("#kmer-size")?.value || 3),
+                    motif: $("#motif-input")?.value || "",
+                  };
+            run(e.submitter, async () =>
+              showSequence(await api(routes[kind], body), kind),
+            );
+          };
+        if ($("#audit-button"))
+          $("#audit-button").onclick = (e) =>
+            run(e.target, async () => {
+              const d = await api("/api/audit");
+              $("#audit-output").innerHTML =
+                "<h3>" +
+                (d.status === "pass"
+                  ? "Structural checks passed"
+                  : "Records need review") +
+                "</h3>" +
+                table(
+                  ["Check", "Result"],
+                  [
+                    ["Records", d.records],
+                    ["Unique paper IDs", d.unique_paper_ids],
+                    ["Unique DOIs", d.unique_dois],
+                    ["Duplicate IDs", d.duplicate_paper_ids.length],
+                    ["Missing metadata", d.missing_metadata.length],
+                    ["Year outliers", d.year_outliers.length],
+                  ],
+                ) +
+                '<p class="aside-note">Structural checks do not verify publication quality or scientific accuracy.</p>';
+            });
+      }
+      document
+        .querySelectorAll("[data-view]")
+        .forEach((b) => (b.onclick = () => navigate(b.dataset.view)));
+      $("#compare-button").onclick = compare;
+      $("#dialog-close").onclick = () => $("#paper-dialog").close();
+      render();
+      run(null, async () => {
+        const [health, library] = await Promise.all([
+          api("/api/health"),
+          api("/api/papers"),
+        ]);
+        state.papers = library.papers;
+        $("#corpus-count").textContent = health.records;
+        const years = state.papers.map((p) => p.year);
+        $("#year-range").textContent =
+          Math.min(...years) + " to " + Math.max(...years);
+        render();
+      });
+    </script>
+  </body>
+</html>

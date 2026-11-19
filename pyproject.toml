@@ -1,0 +1,9 @@
+[project]
+name = "lysis-research-desk"
+version = "4.1.0"
+description = "Local literature research and descriptive sequence workbench"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
