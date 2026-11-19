@@ -967,6 +967,7 @@
     <script>
       "use strict";
       const $ = (s) => document.querySelector(s);
+      const hosted = !["127.0.0.1", "localhost"].includes(location.hostname);
       const clean = (value) =>
         String(value ?? "").replace(/[\u2014\u2013]/g, " - ");
       const esc = (value) =>
@@ -990,6 +991,7 @@
         saved = {};
       }
       const state = {
+        ready: false,
         view: "search",
         papers: [],
         results: null,
@@ -1172,7 +1174,7 @@
         return `<div class="panel"><form id="sequence-form"><div class="section-head"><label for="sequence-input">${fasta ? "FASTA RECORDS" : "NUCLEOTIDE SEQUENCE"}</label><button type="button" class="text" id="sample-sequence" style="font-size:11px">Load example</button></div><textarea id="sequence-input" rows="7" spellcheck="false" placeholder="${fasta ? ">record_1\nATGCGTACGTAGCTAGCTAG" : "ATGCGTACGTAGCTAGCTAG"}" required></textarea><small>${fasta ? "FASTA headers and IUPAC nucleotide symbols. Maximum 1.5 MB." : "IUPAC nucleotide symbols. Maximum 100,000 nucleotides."}</small><div class="form-row">${kind === "sequence" ? '<div><label for="kmer-size">k-mer size</label><select id="kmer-size"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></div>' : ""}${kind === "motif" ? '<div><label for="motif-input">IUPAC motif</label><input id="motif-input" placeholder="e.g. GANTC" maxlength="100" required></div>' : ""}<button class="primary">${{ fasta: "Review FASTA", sequence: "Analyse sequence", translate: "Translate sequence", motif: "Find motif matches" }[kind]}</button></div></form></div><div id="sequence-output" class="output" aria-live="polite"></div><p class="aside-note">${{ fasta: "Format and composition checks only. No genome annotation is performed.", sequence: "ORF candidates use an ATG-to-stop scan with a minimum length of 90 nucleotides. They are not validated genes.", translate: "Standard genetic code. Ambiguous codons appear as X and stop codons as *. Partial terminal codons are omitted.", motif: "Matches are sequence observations. Ambiguous motif symbols match canonical bases. Ambiguous bases in the supplied sequence are not expanded." }[kind]}</p>`;
       }
       function scopeView() {
-        return `<div class="help-grid"><section class="panel"><div class="eyebrow">COLLECTION</div><h2 style="margin-top:14px">A focused starting point</h2><p>The application contains ${state.papers.length} bibliographic records with attributed research notes. This starter corpus is separate from the larger survey catalogue in project materials.</p><p>Notes are not full-text papers. Follow DOI links and inspect the original publications before citing their findings.</p><button id="audit-button">Run corpus audit</button><div id="audit-output" class="output" aria-live="polite"></div></section><section class="panel"><div class="eyebrow">METHOD</div><h2 style="margin-top:14px">Transparent retrieval</h2><p>Titles, subject tags and research notes are tokenised and represented with TF-IDF. Truncated singular value decomposition produces the local LSA index.</p><p>The ranking combines 65% LSA cosine similarity with 35% query-term coverage. Scores are ranking values. The lexical component is not BM25.</p><p>The included five-query smoke evaluation uses project-team relevance labels. It is not an independent benchmark.</p></section><section class="panel"><h2>Working locally</h2><p>The server listens on 127.0.0.1. Search and sequence utilities run on this computer. Reading lists and personal notes use browser local storage.</p><p>External publication sites are visited only when you open their links. Do not enter patient-identifiable data.</p></section><section class="panel"><h2>Scope of use</h2><p>Literature retrieval, reference exports and descriptive nucleotide utilities support educational research.</p><p>This application does not provide phage-host prediction, validated gene annotation, treatment recommendations, MedCPT inference or generated scientific synthesis.</p></section></div>`;
+        return `<div class="help-grid"><section class="panel"><div class="eyebrow">COLLECTION</div><h2 style="margin-top:14px">A focused starting point</h2><p>The application contains ${state.papers.length} bibliographic records with attributed research notes. This starter corpus is separate from the larger survey catalogue in project materials.</p><p>Notes are not full-text papers. Follow DOI links and inspect the original publications before citing their findings.</p><button id="audit-button">Run corpus audit</button><div id="audit-output" class="output" aria-live="polite"></div></section><section class="panel"><div class="eyebrow">METHOD</div><h2 style="margin-top:14px">Transparent retrieval</h2><p>Titles, subject tags and research notes are tokenised and represented with TF-IDF. Truncated singular value decomposition produces the LSA index.</p><p>The ranking combines 65% LSA cosine similarity with 35% query-term coverage. Scores are ranking values. The lexical component is not BM25.</p><p>The included five-query smoke evaluation uses project-team relevance labels. It is not an independent benchmark.</p></section><section class="panel"><h2>Data and privacy</h2><p>${hosted ? "Search questions and sequence inputs are sent to the hosted LYSIS server for processing. Do not submit confidential sequences." : "Search and sequence utilities run on this computer through the local server."} Reading lists and personal notes use browser local storage.</p><p>External publication sites are visited only when you open their links. Do not enter patient-identifiable data.</p></section><section class="panel"><h2>Scope of use</h2><p>Literature retrieval, reference exports and descriptive nucleotide utilities support educational research.</p><p>This application does not provide phage-host prediction, validated gene annotation, treatment recommendations, MedCPT inference or generated scientific synthesis.</p></section></div>`;
       }
       function render() {
         const [title, description] = pages[state.view];
@@ -1181,11 +1183,18 @@
         $("#breadcrumb").textContent = title;
         document.title = title + " | LYSIS";
         document.querySelectorAll("[data-view]").forEach((b) => {
+          b.disabled = !state.ready;
           const current = b.dataset.view === state.view;
           b.classList.toggle("active", current);
           if (current) b.setAttribute("aria-current", "page");
           else b.removeAttribute("aria-current");
         });
+        $("#main").setAttribute("aria-busy", String(!state.ready));
+        if (!state.ready) {
+          $("#view").innerHTML =
+            '<div class="panel" role="status">Loading research workspace...</div>';
+          return;
+        }
         $("#view").innerHTML =
           state.view === "search"
             ? searchView()
@@ -1650,6 +1659,15 @@
         .forEach((b) => (b.onclick = () => navigate(b.dataset.view)));
       $("#compare-button").onclick = compare;
       $("#dialog-close").onclick = () => $("#paper-dialog").close();
+      if (hosted) {
+        $(".local-tag").textContent = "RESEARCH WORKSPACE";
+        $(".edition").innerHTML = "<b>Research Desk 4.1</b>Web edition";
+        $(".side-foot small").textContent = "Research workspace";
+        document.querySelectorAll(".aside-section dl div").forEach((row) => {
+          if (row.querySelector("dt")?.textContent === "Access")
+            row.querySelector("dd").textContent = "Web";
+        });
+      }
       render();
       run(null, async () => {
         const [health, library] = await Promise.all([
@@ -1657,6 +1675,7 @@
           api("/api/papers"),
         ]);
         state.papers = library.papers;
+        state.ready = true;
         $("#corpus-count").textContent = health.records;
         const years = state.papers.map((p) => p.year);
         $("#year-range").textContent =

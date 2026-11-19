@@ -2,6 +2,10 @@
 
 A local workbench for phage literature research and descriptive nucleotide analysis. The interface uses a quiet, editorial layout with warm neutrals, readable typography and clear source attribution.
 
+## Live application
+
+Open [lysisdesk.vercel.app](https://lysisdesk.vercel.app). Hosting details and the pending custom-domain configuration are documented in [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ## Start on this Mac
 
 Double-click **Launch.command**, keep the terminal open, then visit **http://127.0.0.1:8765**. Press **Control+C** in the terminal to stop.
@@ -68,4 +72,4 @@ Original documentation and its original manifest are retained in `docs/original/
 
 Educational research support. This application does not provide treatment recommendations, phage-host prediction, validated annotation, MedCPT inference, full-text ingestion or generated scientific synthesis. The 19-record corpus is distinct from the larger project survey catalogue. Inspect original publications before relying on their findings. Do not enter patient-identifiable information.
 
-The server binds to `127.0.0.1`. Reading notes stay in browser storage. Publication links open external sites when clicked. No cloud account or API key is needed.
+The desktop launcher binds to `127.0.0.1`. The web edition sends search and sequence inputs to the hosted application for processing. Reading notes stay in browser storage. Publication links open external sites when clicked. No visitor account or API key is needed.

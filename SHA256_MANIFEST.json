@@ -1,11 +1,16 @@
 {
-  "build": "LYSIS Research Desk 4.1 restoration",
-  "file_count": 32,
+  "build": "LYSIS Research Desk 4.1 hosted edition",
+  "file_count": 36,
   "files": [
     {
       "path": ".gitignore",
-      "sha256": "82d78d27b52a55948e1936a95e32d0df3cbc878c85d8bd2ac5b96e00cbb85a4f",
-      "size_bytes": 74
+      "sha256": "8c86083ed27f65b90808490a94227f360e52ca8113e6a34c46c76a9ef3559a34",
+      "size_bytes": 83
+    },
+    {
+      "path": ".vercelignore",
+      "sha256": "ff7f95ad4cef5df5d74670d63d4f2901815af11cc6ef17fe5a656a1361a11433",
+      "size_bytes": 149
     },
     {
       "path": "DEMO_QUERIES.txt",
@@ -16,6 +21,11 @@
       "path": "DEMO_SCRIPT.md",
       "sha256": "6cf313050366909bf808ffdd14730c6dc793fea90c9f216fe41c9c82af1b09a0",
       "size_bytes": 1279
+    },
+    {
+      "path": "DEPLOYMENT.md",
+      "sha256": "f0a9a61fd5d3f734d0be5d60018792090f2f9215f7c5c8245bd4ee0e5166ec1b",
+      "size_bytes": 1679
     },
     {
       "path": "Launch.command",
@@ -29,8 +39,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "2e243173b58ddf338a46f1f6efac2dde56718b099aad9bba4f4efaca0a299184",
-      "size_bytes": 4422
+      "sha256": "bec6a8ff81f156cccddb1f6756d7c6fbfed2a78ad2dba0a16823c872d571dd8a",
+      "size_bytes": 4716
     },
     {
       "path": "RECOVERY.json",
@@ -66,6 +76,11 @@
       "path": "VALIDATION_REPORT.md",
       "sha256": "dae067e32ffb9622787a4caaa583e2c9ae93e2bb72c096ff8d0672bdcafc3954",
       "size_bytes": 2238
+    },
+    {
+      "path": "api/index.py",
+      "sha256": "a1ba08abb070bd69de7723ee7f244b4648e0395f6485922b18ef45a42990540b",
+      "size_bytes": 765
     },
     {
       "path": "app.py",
@@ -149,8 +164,8 @@
     },
     {
       "path": "static/index.html",
-      "sha256": "62dfe44de3b00b58bc30de7a9c45a6d3360ee5bf2dee214f84ceb7d3c06504b5",
-      "size_bytes": 58448
+      "sha256": "15ee99e5e98a4c85382bf5163c343639cd12307e758adf6b6fbdd65e328d3b0d",
+      "size_bytes": 59425
     },
     {
       "path": "tests/test_workbench.py",
@@ -161,6 +176,11 @@
       "path": "uv.lock",
       "sha256": "9f590f474320413e522206b3ecc247c2057c43c263cae86e3634e0e86c0bdcd3",
       "size_bytes": 62002
+    },
+    {
+      "path": "vercel.json",
+      "sha256": "dee8bf24d2fa150b40cb8b4161f819aabc33cd20418ff206b092166161a5070f",
+      "size_bytes": 317
     }
   ]
 }

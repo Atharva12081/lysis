@@ -1,0 +1,13 @@
+.venv
+.git
+__pycache__
+.ruff_cache
+output
+docs
+tests
+*.npy
+lsa_vocab.json
+chunk_meta.json
+lsa_index_manifest.json
+SHA256_MANIFEST.json
+RECOVERY.json
